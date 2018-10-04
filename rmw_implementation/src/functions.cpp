@@ -219,6 +219,10 @@ RMW_INTERFACE_FN(rmw_get_implementation_identifier,
   const char *, nullptr,
   0, ARG_TYPES(void))
 
+RMW_INTERFACE_FN(rmw_get_serialization_format,
+  const char *, nullptr,
+  0, ARG_TYPES(void))
+
 RMW_INTERFACE_FN(rmw_create_node,
   rmw_node_t *, nullptr,
   4, ARG_TYPES(
@@ -361,7 +365,7 @@ RMW_INTERFACE_FN(rmw_get_service_names_and_types,
 
 RMW_INTERFACE_FN(rmw_get_node_names,
   rmw_ret_t, RMW_RET_ERROR,
-  2, ARG_TYPES(const rmw_node_t *, rcutils_string_array_t *))
+  3, ARG_TYPES(const rmw_node_t *, rcutils_string_array_t *, rcutils_string_array_t *))
 
 RMW_INTERFACE_FN(rmw_count_publishers,
   rmw_ret_t, RMW_RET_ERROR,
@@ -394,6 +398,7 @@ void prefetch_symbols(void)
   // get all symbols to avoid race conditions later since the passed
   // symbol name is expected to be a std::string which requires allocation
   GET_SYMBOL(rmw_get_implementation_identifier)
+  GET_SYMBOL(rmw_get_serialization_format)
   GET_SYMBOL(rmw_create_node)
   GET_SYMBOL(rmw_destroy_node)
   GET_SYMBOL(rmw_node_get_graph_guard_condition)
